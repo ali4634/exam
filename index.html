@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیپر مارکنگ ایپ</title>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1565c0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://ssl.gstatic.com/images/branding/product/2x/drive_2020q4_512dp.png">
+    
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #e3f2fd; }
+        .container { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
+        h1 { color: #1565c0; text-align: center; }
+        .tab-container { display: flex; margin-bottom: 20px; border-bottom: 2px solid #42a5f5; }
+        .tab { padding: 10px 20px; cursor: pointer; background-color: #bbdefb; border: 1px solid #90caf9; border-bottom: none; border-radius: 5px 5px 0 0; margin-right: 5px; transition: all 0.3s; }
+        .tab.active { background-color: #42a5f5; color: white; font-weight: bold; }
+        .tab-content { display: none; padding: 15px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 5px 5px; }
+        .tab-content.active { display: block; background-color: white; }
+        .question { border: 2px solid #64b5f6; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #e1f5fe; }
+        .parts { margin-left: 20px; }
+        .part { margin-bottom: 10px; }
+        input[type="number"], input[type="text"], select, textarea { padding: 5px; margin-left: 10px; border: 1px solid #90caf9; border-radius: 3px; }
+        input[type="number"] { width: 60px; }
+        input[type="text"] { width: 200px; }
+        textarea { width: 100%; height: 60px; margin-top: 10px; resize: vertical; }
+        .button-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; justify-content: center; }
+        button { background-color: #0288d1; color: white; border: none; padding: 8px 12px; font-size: 14px; cursor: pointer; border-radius: 5px; min-width: 120px; flex-grow: 1; transition: background-color 0.3s; }
+        button:hover { background-color: #0277bd; }
+        .whatsapp-btn { background-color: #25D366; }
+        .whatsapp-btn:hover { background-color: #128C7E; }
+        .reset-btn { background-color: #d32f2f; }
+        .save-exam-btn { background-color: #7b1fa2; }
+        .reset-btn:hover { background-color: #c62828; }
+        .save-exam-btn:hover { background-color: #6a1b9a; }
+        .total { font-weight: bold; font-size: 18px; margin-top: 20px; color: #2e7d32; text-align: center; }
+        .student-list, .exam-student-list { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .student-list th, .student-list td, .exam-student-list th, .exam-student-list td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        .student-list th { background-color: #4fc3f7; color: white; }
+        .exam-student-list th { background-color: #80deea; color: #000; }
+        .top-scorer { background-color: #a5d6a7 !important; }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>پیپر مارکنگ ایپ</h1>
+
+<div class="tab-container">
+    <div class="tab active" onclick="openTab('marking')">پیپر مارکنگ</div>
+    <div class="tab" onclick="openTab('saveExam')">حفظ امتحان</div>
+</div>
+
+<!-- پیپر مارکنگ ٹیب -->
+<div id="marking" class="tab-content active">
+<div class="class-selector">
+<label for="classSelect">کلاس منتخب کریں:</label>
+<select id="classSelect">
+<option value="class1">کلاس 1</option><option value="class2">کلاس 2</option><option value="class3">کلاس 3</option><option value="class4">کلاس 4</option><option value="class5">کلاس 5</option><option value="class6">کلاس 6</option>
+</select>
+</div>
+<div class="paper-info">
+<div><label for="paperName">کتاب کا نام:</label>
+<input type="text" id="paperName" placeholder="کتاب کا نام درج کریں"></div>
+<div><label for="rollNumber">رول نمبر:</label>
+<input type="text" id="rollNumber" placeholder="رول نمبر درج کریں"></div>
+</div>
+<div class="question">
+<h3>سوال 1 (40 نمبر)</h3>
+<div class="parts">
+<div class="part">جزو 1: <input type="number" id="q1p1" min="0" max="10" value="0"></div>
+<div class="part">جزو 2: <input type="number" id="q1p2" min="0" max="10" value="0"></div>
+<div class="part">جزو 3: <input type="number" id="q1p3" min="0" max="10" value="0"></div>
+<div class="part">جزو 4: <input type="number" id="q1p4" min="0" max="10" value="0"></div>
+</div>
+</div>
+<div class="question">
+<h3>سوال 2 (33 نمبر)</h3>
+<div class="parts">
+<div class="part">جزو 1: <input type="number" id="q2p1" min="0" max="10" value="0"></div>
+<div class="part">جزو 2: <input type="number" id="q2p2" min="0" max="10" value="0"></div>
+<div class="part">جزو 3: <input type="number" id="q2p3" min="0" max="13" value="0"></div>
+</div>
+</div>
+<div class="question">
+<h3>سوال 3 (33 نمبر)</h3>
+<div class="parts">
+<div class="part">جزو 1: <input type="number" id="q3p1" min="0" max="10" value="0"></div>
+<div class="part">جزو 2: <input type="number" id="q3p2" min="0" max="10" value="0"></div>
+<div class="part">جزو 3: <input type="number" id="q3p3" min="0" max="13" value="0"></div>
+<textarea id="q3comment" placeholder="تبصرہ درج کریں"></textarea>
+</div>
+</div>
+<div class="total" id="totalMarks">کل نمبرات: 0</div>
+<div class="button-group">
+<button onclick="calculateTotal()">کل نمبرات کا حساب لگائیں</button>
+<button onclick="saveStudent()">محفوظ کریں</button>
+<button onclick="downloadPDF()">PDF ڈاؤنلوڈ کریں</button>
+<button onclick="shareClassResults()" class="whatsapp-btn">واٹس ایپ پر شیئر کریں</button>
+<button onclick="clearForm()">فارم صاف کریں</button>
+<button onclick="resetAllData()" class="reset-btn">تمام ڈیٹا ری سیٹ کریں</button>
+</div>
+<table class="student-list" id="studentTable">
+<thead><tr><th>رول نمبر</th><th>کتاب کا نام</th><th>سوال 1</th><th>سوال 2</th><th>سوال 3</th><th>کل نمبرات</th><th>تبصرہ</th><th>کلاس</th></tr></thead>
+<tbody id="studentTableBody"></tbody>
+</table>
+</div>
+
+<!-- حفظ امتحان ٹیب -->
+<div id="saveExam" class="tab-content">
+<div class="exam-info">
+<div class="class-selector">
+<label for="examClassSelect">کلاس منتخب کریں:</label>
+<select id="examClassSelect">
+<option value="class1">کلاس 1</option><option value="class2">کلاس 2</option><option value="class3">کلاس 3</option><option value="class4">کلاس 4</option><option value="class5">کلاس 5</option><option value="class6">کلاس 6</option>
+</select>
+</div>
+<div><label for="studentName">طالب علم کا نام:</label>
+<input type="text" id="studentName" placeholder="طالب علم کا نام درج کریں"></div>
+</div>
+<div class="question">
+<h3>سوال 1 (33 نمبر)</h3>
+<div class="parts"><div class="part">نمبر: <input type="number" id="eq1" min="0" max="33" value="0"></div></div>
+</div>
+<div class="question">
+<h3>سوال 2 (33 نمبر)</h3>
+<div class="parts"><div class="part">نمبر: <input type="number" id="eq2" min="0" max="33" value="0"></div></div>
+</div>
+<div class="question">
+<h3>سوال 3 (34 نمبر)</h3>
+<div class="parts"><div class="part">نمبر: <input type="number" id="eq3" min="0" max="34" value="0"></div></div>
+</div>
+<div>
+    <label for="examComment">عمومی تبصرہ:</label>
+    <textarea id="examComment" placeholder="اس امتحان کے لیے کوئی عمومی تبصرہ درج کریں"></textarea>
+</div>
+<div class="total" id="examTotalMarks">کل نمبرات: 0</div>
+<div class="button-group">
+<button onclick="calculateExamTotal()">کل نمبرات کا حساب لگائیں</button>
+<button onclick="saveExamStudent()" class="save-exam-btn">محفوظ کریں</button>
+<button onclick="downloadExamPDF()">PDF ڈاؤنلوڈ کریں</button>
+<button onclick="shareExamResults()" class="whatsapp-btn">واٹس ایپ پر شیئر کریں</button>
+<button onclick="clearExamForm()">فارم صاف کریں</button>
+</div>
+<div class="exam-results">
+<h3>محفوظ شدہ نتائج</h3>
+<table class="exam-student-list" id="examStudentTable">
+<thead><tr><th>نام</th><th>سوال 1</th><th>سوال 2</th><th>سوال 3</th><th>کل نمبرات</th><th>تبصرہ</th><th>تاریخ</th></tr></thead>
+<tbody id="examStudentTableBody"></tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<script>
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then(registration => {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, err => {
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
+const { jsPDF } = window.jspdf;
+let allStudents = JSON.parse(localStorage.getItem('paperMarkingStudents')) || [];
+let allExamStudents = JSON.parse(localStorage.getItem('examStudents')) || [];
+let currentClass = 'class1';
+let currentExamClass = 'class1';
+let urduFont = null;
+
+async function loadUrduFont() {
+    try {
+        const fontUrl = 'https://cdn.jsdelivr.net/gh/googlefonts/noto-fonts@main/unhinted/ttf/NotoNastaliqUrdu/NotoNastaliqUrdu-Regular.ttf';
+        const response = await fetch(fontUrl);
+        const font = await response.arrayBuffer();
+        const fontStr = new Uint8Array(font).reduce((data, byte) => data + String.fromCharCode(byte), '');
+        urduFont = btoa(fontStr);
+        console.log("Urdu font loaded.");
+    } catch (e) {
+        console.error("Font loading failed:", e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadUrduFont();
+    document.getElementById('classSelect').addEventListener('change', function() {
+        currentClass = this.value;
+        displayStudents();
+    });
+    document.getElementById('examClassSelect').addEventListener('change', function() {
+        currentExamClass = this.value;
+        displayExamStudents();
+    });
+    displayStudents();
+    displayExamStudents();
+});
+
+function openTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`.tab[onclick="openTab('${tabId}')"]`).classList.add('active');
+}
+
+// --- پیپر مارکنگ کے افعال ---
+function calculateTotal() {
+    const total = ['q1p1','q1p2','q1p3','q1p4','q2p1','q2p2','q2p3','q3p1','q3p2','q3p3']
+        .reduce((sum, id) => sum + (parseInt(document.getElementById(id).value) || 0), 0);
+    document.getElementById('totalMarks').innerText = `کل نمبرات: ${total}`;
+    return total;
+}
+
+function saveStudent() {
+    const paperName = document.getElementById('paperName').value;
+    const rollNumber = document.getElementById('rollNumber').value;
+    if (!paperName || !rollNumber) {
+        alert('براہ کرم کتاب کا نام اور رول نمبر درج کریں');
+        return;
+    }
+    const student = {
+        rollNumber, paperName, total: calculateTotal(),
+        q1Total: ['q1p1','q1p2','q1p3','q1p4'].reduce((s,i) => s + (parseInt(document.getElementById(i).value)||0), 0),
+        q2Total: ['q2p1','q2p2','q2p3'].reduce((s,i) => s + (parseInt(document.getElementById(i).value)||0), 0),
+        q3Total: ['q3p1','q3p2','q3p3'].reduce((s,i) => s + (parseInt(document.getElementById(i).value)||0), 0),
+        q3Comment: document.getElementById('q3comment').value,
+        class: currentClass,
+        timestamp: new Date().getTime()
+    };
+    const existingIndex = allStudents.findIndex(s => s.rollNumber === rollNumber && s.class === currentClass && s.paperName === paperName);
+    if (existingIndex >= 0) allStudents[existingIndex] = student;
+    else allStudents.push(student);
+    localStorage.setItem('paperMarkingStudents', JSON.stringify(allStudents));
+    displayStudents();
+    clearForm();
+    alert('طالب علم کی معلومات محفوظ ہوگئیں');
+}
+
+function displayStudents() {
+    const tbody = document.getElementById('studentTableBody');
+    tbody.innerHTML = '';
+    const classStudents = allStudents.filter(student => student.class === currentClass);
+    if (classStudents.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8">کوئی ریکارڈ موجود نہیں</td></tr>`;
+        return;
+    }
+    const maxTotal = Math.max(...classStudents.map(s => s.total));
+    classStudents.sort((a, b) => parseInt(a.rollNumber) - parseInt(b.rollNumber)).forEach(student => {
+        const row = document.createElement('tr');
+        if (student.total === maxTotal && maxTotal > 0) row.classList.add('top-scorer');
+        row.innerHTML = `<td>${student.rollNumber}</td><td>${student.paperName}</td><td>${student.q1Total}</td><td>${student.q2Total}</td><td>${student.q3Total}</td><td>${student.total}</td><td>${student.q3Comment || '-'}</td><td>${student.class.replace('class', 'کلاس ')}</td>`;
+        tbody.appendChild(row);
+    });
+}
+
+function clearForm() {
+    document.getElementById('paperName').value = '';
+    document.getElementById('rollNumber').value = '';
+    ['q1p1','q1p2','q1p3','q1p4','q2p1','q2p2','q2p3','q3p1','q3p2','q3p3'].forEach(id => document.getElementById(id).value = '0');
+    document.getElementById('q3comment').value = '';
+    document.getElementById('totalMarks').innerText = 'کل نمبرات: 0';
+}
+
+// --- حفظ امتحان کے افعال ---
+function calculateExamTotal() {
+    const total = (parseInt(document.getElementById('eq1').value) || 0) + (parseInt(document.getElementById('eq2').value) || 0) + (parseInt(document.getElementById('eq3').value) || 0);
+    document.getElementById('examTotalMarks').innerText = `کل نمبرات: ${total}`;
+    return total;
+}
+
+function saveExamStudent() {
+    const studentName = document.getElementById('studentName').value;
+    if (!studentName) {
+        alert('براہ کرم طالب علم کا نام درج کریں');
+        return;
+    }
+    const examStudent = {
+        studentName, total: calculateExamTotal(),
+        eq1: parseInt(document.getElementById('eq1').value) || 0,
+        eq2: parseInt(document.getElementById('eq2').value) || 0,
+        eq3: parseInt(document.getElementById('eq3').value) || 0,
+        examComment: document.getElementById('examComment').value,
+        class: currentExamClass,
+        timestamp: new Date().getTime(),
+        date: new Date().toLocaleDateString('ur-PK')
+    };
+    allExamStudents.push(examStudent);
+    localStorage.setItem('examStudents', JSON.stringify(allExamStudents));
+    displayExamStudents();
+    clearExamForm();
+    alert('امتحان کے نتائج محفوظ ہوگئے');
+}
+
+function displayExamStudents() {
+    const tbody = document.getElementById('examStudentTableBody');
+    tbody.innerHTML = '';
+    const classExamStudents = allExamStudents.filter(student => student.class === currentExamClass);
+    if (classExamStudents.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7">کوئی ریکارڈ موجود نہیں</td></tr>`;
+        return;
+    }
+    classExamStudents.sort((a, b) => b.timestamp - a.timestamp).forEach(student => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${student.studentName}</td><td>${student.eq1}</td><td>${student.eq2}</td><td>${student.eq3}</td><td>${student.total}</td><td>${student.examComment || '-'}</td><td>${student.date}</td>`;
+        tbody.appendChild(row);
+    });
+}
+
+function clearExamForm() {
+    document.getElementById('studentName').value = '';
+    ['eq1','eq2','eq3'].forEach(id => document.getElementById(id).value = '0');
+    document.getElementById('examComment').value = '';
+    document.getElementById('examTotalMarks').innerText = 'کل نمبرات: 0';
+}
+
+// --- عمومی افعال (شیئر، پی ڈی ایف، ری سیٹ) ---
+function resetAllData() {
+    if (confirm('کیا آپ واقعی تمام ڈیٹا کو حذف کرنا چاہتے ہیں؟')) {
+        localStorage.clear();
+        allStudents = [];
+        allExamStudents = [];
+        displayStudents();
+        displayExamStudents();
+        alert('تمام ڈیٹا حذف ہوچکا ہے');
+    }
+}
+
+function shareClassResults() {
+    const classStudents = allStudents.filter(s => s.class === currentClass);
+    if (classStudents.length === 0) return alert('اس کلاس میں کوئی ریکارڈ موجود نہیں');
+    const paperName = classStudents[0].paperName || 'نامعلوم کتاب';
+    let message = `*${paperName} - ${currentClass.replace('class', 'کلاس ')}*\n\nرول نمبر\tکل نمبرات\n----------------\n`;
+    classStudents.sort((a, b) => parseInt(a.rollNumber) - parseInt(b.rollNumber)).forEach(s => {
+        message += `${s.rollNumber}\t\t${s.total}\n`;
+    });
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+function shareExamResults() {
+    const classStudents = allExamStudents.filter(s => s.class === currentExamClass);
+    if (classStudents.length === 0) return alert('اس کلاس میں اشتراک کے لیے کوئی ریکارڈ موجود نہیں');
+    let message = `*حفظ امتحانی نتائج - ${currentExamClass.replace('class', 'کلاس ')}*\n\n--------------------------------\n`;
+    classStudents.forEach(student => {
+        message += `*نام:* ${student.studentName}\n*کل نمبرات:* ${student.total}\n`;
+        if (student.examComment) message += `*تبصرہ:* ${student.examComment}\n`;
+        message += '--------------------------------\n';
+    });
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+function createPdf(title, headers, data, headColor, filename) {
+    if (!urduFont) return alert("پی ڈی ایف کے لیے فونٹ لوڈ نہیں ہو سکا۔");
+    const doc = new jsPDF();
+    doc.addFileToVFS('NotoNastaliqUrdu-Regular.ttf', urduFont);
+    doc.addFont('NotoNastaliqUrdu-Regular.ttf', 'NotoNastaliqUrdu', 'normal');
+    doc.setFont('NotoNastaliqUrdu');
+    doc.setFontSize(20);
+    doc.text(title, doc.internal.pageSize.getWidth() - 14, 20, { align: 'right' });
+    doc.autoTable({
+        head: [headers.reverse()], body: data.map(row => row.reverse()),
+        startY: 30,
+        styles: { font: 'NotoNastaliqUrdu', halign: 'center', cellPadding: 2, fontSize: 10 },
+        headStyles: { fillColor: headColor, textColor: 255, fontSize: 12, fontStyle: 'bold' },
+        didParseCell: (data) => { data.cell.styles.halign = 'center'; }
+    });
+    doc.save(filename);
+}
+
+function downloadPDF() {
+    const classStudents = allStudents.filter(s => s.class === currentClass);
+    if (classStudents.length === 0) return alert('PDF بنانے کے لیے ڈیٹا موجود نہیں۔');
+    const paperName = classStudents[0].paperName || 'نامعلوم کتاب';
+    const title = `نتائج: ${paperName} - ${currentClass.replace('class', 'کلاس ')}`;
+    const headers = ["رول نمبر", "سوال ۱", "سوال ۲", "سوال ۳", "کل نمبرات", "تبصرہ"];
+    const data = classStudents
+        .sort((a, b) => parseInt(a.rollNumber) - parseInt(b.rollNumber))
+        .map(s => [s.rollNumber, s.q1Total, s.q2Total, s.q3Total, s.total, s.q3Comment || '-']);
+    createPdf(title, headers, data, [79, 195, 247], `${paperName}_${currentClass}.pdf`);
+}
+
+function downloadExamPDF() {
+    const classExamStudents = allExamStudents.filter(s => s.class === currentExamClass);
+    if (classExamStudents.length === 0) return alert('PDF بنانے کے لیے ڈیٹا موجود نہیں۔');
+    const title = `حفظ امتحانی نتائج - ${currentExamClass.replace('class', 'کلاس ')}`;
+    const headers = ["نام", "سوال ۱", "سوال ۲", "سوال ۳", "کل نمبرات", "تبصرہ"];
+    const data = classExamStudents
+        .sort((a, b) => a.studentName.localeCompare(b.studentName, 'ur'))
+        .map(s => [s.studentName, s.eq1, s.eq2, s.eq3, s.total, s.examComment || '-']);
+    createPdf(title, headers, data, [206, 147, 216], `Hifz_Results_${currentExamClass}.pdf`);
+}
+</script>
+</body>
+</html>
